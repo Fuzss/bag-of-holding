@@ -1,4 +1,4 @@
-package fuzs.bagofholding.data;
+package fuzs.bagofholding.data.tags;
 
 import fuzs.bagofholding.init.ModRegistry;
 import fuzs.puzzleslib.api.data.v2.core.DataProviderContext;
