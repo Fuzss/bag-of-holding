@@ -9,7 +9,7 @@ import fuzs.bagofholding.world.item.BagType;
 import fuzs.iteminteractions.api.v1.DyeBackedColor;
 import fuzs.iteminteractions.api.v1.provider.impl.ContainerProvider;
 import net.minecraft.world.entity.EquipmentSlotGroup;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Optional;
 
