@@ -6,18 +6,18 @@ import fuzs.bagofholding.world.inventory.BagItemMenu;
 import fuzs.bagofholding.world.inventory.LockableInventorySlot;
 import fuzs.iteminteractions.api.v1.client.tooltip.AbstractClientItemContentsTooltip;
 import fuzs.puzzleslib.api.client.key.v1.KeyMappingHelper;
-import fuzs.puzzleslib.api.core.v1.utility.ResourceLocationHelper;
+import net.minecraft.resources.Identifier;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 
 public class BagItemScreen extends AbstractContainerScreen<BagItemMenu> {
-    private static final ResourceLocation CONTAINER_BACKGROUND = ResourceLocationHelper.withDefaultNamespace(
+    private static final Identifier CONTAINER_BACKGROUND = Identifier.withDefaultNamespace(
             "textures/gui/container/generic_54.png");
 
     public BagItemScreen(BagItemMenu menu, Inventory inventory, Component title) {
@@ -44,12 +44,12 @@ public class BagItemScreen extends AbstractContainerScreen<BagItemMenu> {
         this.renderLockableSlotHighlight(guiGraphics, SLOT_HIGHLIGHT_FRONT_SPRITE);
     }
 
-    private void renderLockableSlotHighlight(GuiGraphics guiGraphics, ResourceLocation resourceLocation) {
+    private void renderLockableSlotHighlight(GuiGraphics guiGraphics, Identifier identifier) {
         for (Slot slot : this.menu.slots) {
             if (slot != this.hoveredSlot && slot.isHighlightable()) {
                 if (slot instanceof LockableInventorySlot lockableSlot && lockableSlot.locked()) {
                     guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED,
-                            resourceLocation,
+                            identifier,
                             slot.x - 4,
                             slot.y - 4,
                             24,
