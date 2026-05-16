@@ -1,4 +1,4 @@
-accessWidener   v2  named
+classTweaker    v2  official
 transitive-accessible   field   net/minecraft/client/gui/screens/inventory/AbstractContainerScreen  SLOT_HIGHLIGHT_BACK_SPRITE  Lnet/minecraft/resources/Identifier;
 transitive-accessible   field   net/minecraft/client/gui/screens/inventory/AbstractContainerScreen  SLOT_HIGHLIGHT_FRONT_SPRITE Lnet/minecraft/resources/Identifier;
 extendable  method  net/minecraft/client/gui/screens/inventory/AbstractContainerScreen  renderSlotHighlightBack (Lnet/minecraft/client/gui/GuiGraphics;)V
