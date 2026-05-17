@@ -1,4 +1,4 @@
-package fuzs.bagofholding.common.world.item.container;
+package fuzs.bagofholding.common.world.item.storage;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -34,7 +34,7 @@ public class BagContainerStorage extends ContainerStorage {
     private final BagType bagType;
 
     public BagContainerStorage(BagType bagType, @Nullable DyeBackedColor dyeColor, StorageOptions storageOptions) {
-        super(9, 3, dyeColor, storageOptions);
+        super(dyeColor, storageOptions);
         this.bagType = bagType;
     }
 

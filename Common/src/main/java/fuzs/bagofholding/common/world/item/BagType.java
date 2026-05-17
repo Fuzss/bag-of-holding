@@ -14,10 +14,14 @@ public enum BagType implements StringRepresentable {
 
     public static final Codec<BagType> CODEC = StringRepresentable.fromEnum(BagType::values);
 
-    public final DyeBackedColor fallbackColor;
+    public final DyeBackedColor color;
 
     BagType(DyeColor dyeColor) {
-        this.fallbackColor = DyeBackedColor.fromDyeColor(dyeColor);
+        this(DyeBackedColor.fromDyeColor(dyeColor));
+    }
+
+    BagType(DyeBackedColor color) {
+        this.color = color;
     }
 
     @Override

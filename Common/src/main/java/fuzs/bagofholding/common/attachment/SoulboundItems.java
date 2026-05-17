@@ -30,15 +30,7 @@ public record SoulboundItems(List<ItemStack> items) {
     public static final StreamCodec<RegistryFriendlyByteBuf, SoulboundItems> STREAM_CODEC = ItemStack.STREAM_CODEC.<List<ItemStack>>apply(
             ByteBufCodecs.collection(NonNullList::createWithCapacity)).map(SoulboundItems::new, SoulboundItems::items);
 
-    public static EventResult onLivingDrops(LivingEntity entity, DamageSource damageSource, Collection<ItemEntity> drops, boolean recentlyHit) {
-        if (entity instanceof ServerPlayer serverPlayer) {
-            ModRegistry.SOULBOUND_ITEMS_ATTACHMENT_TYPE.set(serverPlayer, saveOnDeath(serverPlayer, drops));
-        }
-
-        return EventResult.PASS;
-    }
-
-    public static SoulboundItems saveOnDeath(ServerPlayer serverPlayer, Collection<ItemEntity> drops) {
+    public static SoulboundItems createFromDrops(ServerPlayer serverPlayer, Collection<ItemEntity> drops) {
         Holder<Enchantment> enchantment = EnchantingHelper.lookup(serverPlayer, ModRegistry.PRESERVATION_ENCHANTMENT);
         List<ItemStack> items = drops.stream()
                 .filter((ItemEntity itemEntity) -> {
@@ -61,6 +53,14 @@ public record SoulboundItems(List<ItemStack> items) {
                 })
                 .toList();
         return new SoulboundItems(items);
+    }
+
+    public static EventResult onLivingDrops(LivingEntity entity, DamageSource damageSource, Collection<ItemEntity> drops, boolean recentlyHit) {
+        if (entity instanceof ServerPlayer serverPlayer) {
+            ModRegistry.SOULBOUND_ITEMS_ATTACHMENT_TYPE.set(serverPlayer, createFromDrops(serverPlayer, drops));
+        }
+
+        return EventResult.PASS;
     }
 
     public static void onCopy(ServerPlayer originalPlayer, ServerPlayer newPlayer, boolean originalStillAlive) {

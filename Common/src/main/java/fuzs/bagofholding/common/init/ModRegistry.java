@@ -3,7 +3,7 @@ package fuzs.bagofholding.common.init;
 import fuzs.bagofholding.common.BagOfHolding;
 import fuzs.bagofholding.common.attachment.SoulboundItems;
 import fuzs.bagofholding.common.world.inventory.BagItemMenu;
-import fuzs.bagofholding.common.world.item.container.BagContainerStorage;
+import fuzs.bagofholding.common.world.item.storage.BagContainerStorage;
 import fuzs.iteminteractions.common.api.v2.world.item.storage.ItemStorage;
 import fuzs.iteminteractions.common.api.v2.world.item.storage.ItemStorageType;
 import fuzs.puzzleslib.common.api.attachment.v4.DataAttachmentRegistry;
@@ -25,6 +25,7 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.enchantment.Enchantment;
 
@@ -78,6 +79,7 @@ public class ModRegistry {
 
     public static Item.Properties bagOfHoldingProperties() {
         return new Item.Properties().stacksTo(1)
+                .component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)
                 .enchantable(1)
                 .component(DataComponents.TOOLTIP_DISPLAY,
                         TooltipDisplay.DEFAULT.withHidden(DataComponents.CONTAINER, true));

@@ -2,7 +2,7 @@ package fuzs.bagofholding.common.data;
 
 import fuzs.bagofholding.common.init.ModRegistry;
 import fuzs.bagofholding.common.world.item.BagType;
-import fuzs.bagofholding.common.world.item.container.BagContainerStorage;
+import fuzs.bagofholding.common.world.item.storage.BagContainerStorage;
 import fuzs.iteminteractions.common.api.v2.data.AbstractItemStorageDefinitionsProvider;
 import fuzs.iteminteractions.common.api.v2.world.item.storage.StorageOptions;
 import fuzs.puzzleslib.common.api.data.v2.core.DataProviderContext;
@@ -24,7 +24,7 @@ public class ModItemStorageDefinitionsProvider extends AbstractItemStorageDefini
 
     public void add(BagType bagType, Item item) {
         this.add(new BagContainerStorage(bagType,
-                bagType.fallbackColor,
+                bagType.color,
                 StorageOptions.DEFAULT.setFilterContainerItems()), item);
     }
 }

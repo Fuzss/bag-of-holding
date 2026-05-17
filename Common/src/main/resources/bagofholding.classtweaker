@@ -1,3 +1,2 @@
 classTweaker    v2  official
-extendable  method  net/minecraft/client/gui/screens/inventory/AbstractContainerScreen  extractSlotHighlightBack    (Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V
-extendable  method  net/minecraft/client/gui/screens/inventory/AbstractContainerScreen  extractSlotHighlightFront   (Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V
+extendable  method  net/minecraft/world/inventory/ChestMenu addChestGrid    (Lnet/minecraft/world/Container;II)V
