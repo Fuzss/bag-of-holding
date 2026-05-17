@@ -5,13 +5,12 @@ import fuzs.bagofholding.config.ServerConfig;
 import fuzs.bagofholding.network.ClientboundLockSlotMessage;
 import fuzs.bagofholding.world.inventory.BagItemMenu;
 import fuzs.bagofholding.world.inventory.LockableInventorySlot;
-import fuzs.iteminteractions.api.v1.ItemContentsHelper;
-import fuzs.iteminteractions.api.v1.provider.ItemContentsBehavior;
-import fuzs.puzzleslib.api.container.v1.ContainerMenuHelper;
-import fuzs.puzzleslib.api.network.v4.MessageSender;
-import fuzs.puzzleslib.api.network.v4.PlayerSet;
-import fuzs.puzzleslib.api.util.v1.InteractionResultHelper;
+import fuzs.iteminteractions.common.api.v2.world.item.storage.ItemStorageHolder;
+import fuzs.puzzleslib.common.api.container.v1.ContainerMenuHelper;
+import fuzs.puzzleslib.common.api.network.v4.MessageSender;
+import fuzs.puzzleslib.common.api.network.v4.PlayerSet;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -23,10 +22,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
-
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class BagOfHoldingItem extends Item {
 
@@ -44,13 +41,13 @@ public class BagOfHoldingItem extends Item {
         if (player.isSecondaryUseActive() || !BagOfHolding.CONFIG.get(ServerConfig.class).sneakToOpenBag) {
             ItemStack itemInHand = player.getItemInHand(interactionHand);
             if (level instanceof ServerLevel) {
-                ContainerMenuHelper.openMenu(player, this.getMenuProvider(itemInHand), itemInHand.getItemHolder());
+                ContainerMenuHelper.openMenu(player, this.getMenuProvider(itemInHand), itemInHand.typeHolder());
                 player.awardStat(Stats.ITEM_USED.get(this));
                 this.lockMySlot((ServerPlayer) player, itemInHand);
             }
 
             player.playSound(SoundEvents.BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + level.getRandom().nextFloat() * 0.4F);
-            return InteractionResultHelper.sidedSuccess(itemInHand, level.isClientSide());
+            return InteractionResult.SUCCESS;
         } else {
             return super.use(level, player, interactionHand);
         }
@@ -58,9 +55,9 @@ public class BagOfHoldingItem extends Item {
 
     private MenuProvider getMenuProvider(ItemStack itemStack) {
         return new SimpleMenuProvider((int containerId, Inventory inventory, Player player) -> {
-            ItemContentsBehavior behavior = ItemContentsHelper.getItemContentsBehavior(itemStack);
-            SimpleContainer itemContainer = behavior.getItemContainer(itemStack, player);
-            return new BagItemMenu(containerId, inventory, itemContainer, behavior);
+            ItemStorageHolder holder = ItemStorageHolder.ofItem(itemStack);
+            Container container = holder.getItemContainer(itemStack, player);
+            return new BagItemMenu(containerId, inventory, container, holder);
         }, itemStack.getHoverName());
     }
 
@@ -86,11 +83,15 @@ public class BagOfHoldingItem extends Item {
         }
     }
 
+    /**
+     * @see net.minecraft.world.item.BlockItem#onDestroyed(ItemEntity)
+     */
     @Override
     public void onDestroyed(ItemEntity itemEntity) {
-        SimpleContainer container = ItemContentsHelper.getItemContentsBehavior(itemEntity.getItem())
-                .getItemContainer(itemEntity.getItem(), null);
-        Stream<ItemStack> stream = container.getItems().stream().filter(Predicate.not(ItemStack::isEmpty));
-        ItemUtils.onContainerDestroyed(itemEntity, stream.toList());
+        ItemContainerContents container = itemEntity.getItem()
+                .set(DataComponents.CONTAINER, ItemContainerContents.EMPTY);
+        if (container != null) {
+            ItemUtils.onContainerDestroyed(itemEntity, container.nonEmptyItemCopyStream());
+        }
     }
 }

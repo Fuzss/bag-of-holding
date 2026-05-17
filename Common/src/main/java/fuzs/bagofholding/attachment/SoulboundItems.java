@@ -2,9 +2,9 @@ package fuzs.bagofholding.attachment;
 
 import com.mojang.serialization.Codec;
 import fuzs.bagofholding.init.ModRegistry;
-import fuzs.puzzleslib.api.event.v1.core.EventResult;
-import fuzs.puzzleslib.api.item.v2.EnchantingHelper;
-import fuzs.puzzleslib.api.item.v2.GiveItemHelper;
+import fuzs.puzzleslib.common.api.event.v1.core.EventResult;
+import fuzs.puzzleslib.common.api.item.v2.EnchantingHelper;
+import fuzs.puzzleslib.common.api.item.v2.GiveItemHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;

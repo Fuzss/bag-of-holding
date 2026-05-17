@@ -3,7 +3,7 @@ package fuzs.bagofholding.neoforge.init;
 import fuzs.bagofholding.BagOfHolding;
 import fuzs.bagofholding.init.ModRegistry;
 import fuzs.bagofholding.neoforge.world.item.NeoForgeBagOfHoldingItem;
-import fuzs.puzzleslib.api.init.v3.registry.RegistryManager;
+import fuzs.puzzleslib.common.api.init.v3.registry.RegistryManager;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;
 

@@ -3,9 +3,9 @@ package fuzs.bagofholding.client;
 import fuzs.bagofholding.BagOfHolding;
 import fuzs.bagofholding.client.gui.screens.inventory.BagItemScreen;
 import fuzs.bagofholding.init.ModRegistry;
-import fuzs.puzzleslib.api.client.core.v1.ClientModConstructor;
-import fuzs.puzzleslib.api.client.core.v1.context.MenuScreensContext;
-import fuzs.puzzleslib.api.config.v3.ConfigHolder;
+import fuzs.puzzleslib.common.api.client.core.v1.ClientModConstructor;
+import fuzs.puzzleslib.common.api.client.core.v1.context.MenuScreensContext;
+import fuzs.puzzleslib.common.api.config.v3.ConfigHolder;
 
 public class BagOfHoldingClient implements ClientModConstructor {
 

@@ -1,10 +1,9 @@
 package fuzs.bagofholding.world.inventory;
 
 import fuzs.bagofholding.init.ModRegistry;
-import fuzs.bagofholding.world.item.container.BagProvider;
-import fuzs.iteminteractions.api.v1.DyeBackedColor;
-import fuzs.iteminteractions.api.v1.ItemContentsHelper;
-import fuzs.iteminteractions.api.v1.provider.ItemContentsBehavior;
+import fuzs.bagofholding.world.item.container.BagContainerStorage;
+import fuzs.iteminteractions.common.api.v2.world.item.DyeBackedColor;
+import fuzs.iteminteractions.common.api.v2.world.item.storage.ItemStorageHolder;
 import net.minecraft.core.Holder;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -18,37 +17,39 @@ import org.jspecify.annotations.Nullable;
 
 public class BagItemMenu extends AbstractContainerMenu {
     private final Container container;
-    private final ItemContentsBehavior behavior;
+    private final ItemStorageHolder holder;
     private final int hotbarStartIndex;
 
     public BagItemMenu(int containerId, Inventory inventory, Holder<Item> item) {
-        this(containerId, inventory, ItemContentsHelper.getItemContentsBehavior(new ItemStack(item)));
+        this(containerId, inventory, ItemStorageHolder.ofItem(new ItemStack(item)));
     }
 
-    private BagItemMenu(int containerId, Inventory inventory, ItemContentsBehavior behavior) {
+    private BagItemMenu(int containerId, Inventory inventory, ItemStorageHolder holder) {
         this(containerId,
                 inventory,
-                new SimpleContainer(((BagProvider) behavior.provider()).getInventoryHeight() * 9),
-                behavior);
+                new SimpleContainer(((BagContainerStorage) holder.storage()).getInventoryHeight() * 9),
+                holder);
     }
 
-    public BagItemMenu(int containerId, Inventory inventory, Container container, ItemContentsBehavior behavior) {
+    public BagItemMenu(int containerId, Inventory inventory, Container container, ItemStorageHolder holder) {
         super(ModRegistry.BAG_MENU_TYPE.value(), containerId);
-        this.behavior = behavior;
+        this.holder = holder;
         checkContainerSize(container, this.getInventoryHeight() * 9);
         this.container = container;
         container.startOpen(inventory.player);
         int i = (this.getInventoryHeight() - 4) * 18;
         for (int j = 0; j < this.getInventoryHeight(); ++j) {
             for (int k = 0; k < 9; ++k) {
-                this.addSlot(new FilteredBagSlot(behavior, container, k + j * 9, 8 + k * 18, 18 + j * 18));
+                this.addSlot(new FilteredBagSlot(holder, container, k + j * 9, 8 + k * 18, 18 + j * 18));
             }
         }
+
         for (int l = 0; l < 3; ++l) {
             for (int j1 = 0; j1 < 9; ++j1) {
                 this.addSlot(new LockableInventorySlot(inventory, j1 + l * 9 + 9, 8 + j1 * 18, 103 + l * 18 + i));
             }
         }
+
         int hotbarStartIndex = 0;
         for (int i1 = 0; i1 < 9; ++i1) {
             Slot hotbarSlot = this.addSlot(new LockableInventorySlot(inventory, i1, 8 + i1 * 18, 161 + i));
@@ -56,6 +57,7 @@ public class BagItemMenu extends AbstractContainerMenu {
                 hotbarStartIndex = hotbarSlot.index;
             }
         }
+
         this.hotbarStartIndex = hotbarStartIndex;
     }
 
@@ -96,11 +98,12 @@ public class BagItemMenu extends AbstractContainerMenu {
     }
 
     public int getInventoryHeight() {
-        return ((BagProvider) this.behavior.provider()).getInventoryHeight();
+        return ((BagContainerStorage) this.holder.storage()).getInventoryHeight();
     }
 
     public @Nullable DyeBackedColor getBackgroundColor() {
-        return ((BagProvider) this.behavior.provider()).getBackgroundColor();
+//        return ((BagContainerStorage) this.holder.storage()).getBackgroundColor();
+        return null;
     }
 
     public int getHotbarStartIndex() {

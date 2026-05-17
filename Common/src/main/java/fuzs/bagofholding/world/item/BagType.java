@@ -1,7 +1,7 @@
 package fuzs.bagofholding.world.item;
 
 import com.mojang.serialization.Codec;
-import fuzs.iteminteractions.api.v1.DyeBackedColor;
+import fuzs.iteminteractions.common.api.v2.world.item.DyeBackedColor;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.DyeColor;
 

@@ -12,7 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 abstract class InventoryMixin {
 
     @Inject(method = "isUsableForCrafting", at = @At("HEAD"), cancellable = true)
-    private static void isUsableForCrafting(ItemStack itemStack, CallbackInfoReturnable<Boolean> callback) {
-        if (itemStack.is(ModRegistry.RECIPES_IGNORE_COMPONENTS_ITEM_TAG)) callback.setReturnValue(true);
+    private static void isUsableForCrafting(ItemStack item, CallbackInfoReturnable<Boolean> callback) {
+        if (item.is(ModRegistry.RECIPES_IGNORE_COMPONENTS_ITEM_TAG)) {
+            callback.setReturnValue(true);
+        }
     }
 }

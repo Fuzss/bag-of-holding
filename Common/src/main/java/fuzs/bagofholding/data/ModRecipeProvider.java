@@ -2,12 +2,14 @@ package fuzs.bagofholding.data;
 
 import fuzs.bagofholding.BagOfHolding;
 import fuzs.bagofholding.init.ModRegistry;
-import fuzs.puzzleslib.api.data.v2.AbstractRecipeProvider;
-import fuzs.puzzleslib.api.data.v2.core.DataProviderContext;
-import fuzs.puzzleslib.api.data.v2.recipes.TransmuteShapedRecipeBuilder;
+import fuzs.puzzleslib.common.api.data.v2.AbstractRecipeProvider;
+import fuzs.puzzleslib.common.api.data.v2.core.DataProviderContext;
+import fuzs.puzzleslib.common.api.data.v2.recipes.TransmuteShapedRecipeBuilder;
+import fuzs.puzzleslib.common.api.init.v3.registry.ContentRegistrationHelper;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -31,8 +33,9 @@ public class ModRecipeProvider extends AbstractRecipeProvider {
                 .pattern("WIW")
                 .unlockedBy(getHasName(Blocks.CHEST), this.has(Blocks.CHEST))
                 .save(recipeOutput);
-        RecipeSerializer<?> recipeSerializer = TransmuteShapedRecipeBuilder.getRecipeSerializer(BagOfHolding.MOD_ID);
-        TransmuteShapedRecipeBuilder.shaped(recipeSerializer,
+        ResourceKey<RecipeSerializer<?>> resourceKey = ContentRegistrationHelper.getTransmuteShapedRecipeSerializer(
+                BagOfHolding.MOD_ID);
+        TransmuteShapedRecipeBuilder.shaped(resourceKey,
                         this.items(),
                         RecipeCategory.TOOLS,
                         ModRegistry.IRON_BAG_OF_HOLDING_ITEM.value())
@@ -48,7 +51,7 @@ public class ModRecipeProvider extends AbstractRecipeProvider {
                 .unlockedBy(getHasName(ModRegistry.LEATHER_BAG_OF_HOLDING_ITEM.value()),
                         this.has(ModRegistry.LEATHER_BAG_OF_HOLDING_ITEM.value()))
                 .save(recipeOutput);
-        TransmuteShapedRecipeBuilder.shaped(recipeSerializer,
+        TransmuteShapedRecipeBuilder.shaped(resourceKey,
                         this.items(),
                         RecipeCategory.TOOLS,
                         ModRegistry.GOLDEN_BAG_OF_HOLDING_ITEM.value())

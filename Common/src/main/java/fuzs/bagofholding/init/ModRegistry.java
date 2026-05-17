@@ -3,14 +3,15 @@ package fuzs.bagofholding.init;
 import fuzs.bagofholding.BagOfHolding;
 import fuzs.bagofholding.attachment.SoulboundItems;
 import fuzs.bagofholding.world.inventory.BagItemMenu;
-import fuzs.bagofholding.world.item.container.BagProvider;
-import fuzs.iteminteractions.api.v1.provider.ItemContentsProvider;
-import fuzs.puzzleslib.api.attachment.v4.DataAttachmentRegistry;
-import fuzs.puzzleslib.api.attachment.v4.DataAttachmentType;
-import fuzs.puzzleslib.api.data.v2.AbstractDatapackRegistriesProvider;
-import fuzs.puzzleslib.api.init.v3.registry.ContentRegistrationHelper;
-import fuzs.puzzleslib.api.init.v3.registry.RegistryManager;
-import fuzs.puzzleslib.api.init.v3.tags.TagFactory;
+import fuzs.bagofholding.world.item.container.BagContainerStorage;
+import fuzs.iteminteractions.common.api.v2.world.item.storage.ItemStorage;
+import fuzs.iteminteractions.common.api.v2.world.item.storage.ItemStorageType;
+import fuzs.puzzleslib.common.api.attachment.v4.DataAttachmentRegistry;
+import fuzs.puzzleslib.common.api.attachment.v4.DataAttachmentType;
+import fuzs.puzzleslib.common.api.data.v2.AbstractDatapackRegistriesProvider;
+import fuzs.puzzleslib.common.api.init.v3.registry.ContentRegistrationHelper;
+import fuzs.puzzleslib.common.api.init.v3.registry.RegistryManager;
+import fuzs.puzzleslib.common.api.init.v3.tags.TagFactory;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.RegistrySetBuilder;
@@ -45,10 +46,9 @@ public class ModRegistry {
             GOLDEN_BAG_OF_HOLDING_ITEM);
     public static final ResourceKey<Enchantment> PRESERVATION_ENCHANTMENT = REGISTRIES.registerEnchantment(
             "preservation");
-    public static final Holder.Reference<ItemContentsProvider.Type<?>> BAG_ITEM_CONTENTS_PROVIDER_TYPE = REGISTRIES.register(
-            ItemContentsProvider.REGISTRY_KEY,
+    public static final Holder.Reference<ItemStorageType<?>> BAG_ITEM_STORAGE_TYPE = REGISTRIES.register(ItemStorage.REGISTRY_KEY,
             "bag",
-            () -> new ItemContentsProvider.Type<>(BagProvider.CODEC));
+            () -> new ItemStorageType<>(BagContainerStorage.CODEC));
 
     static final TagFactory TAGS = TagFactory.make(BagOfHolding.MOD_ID);
     public static final TagKey<Item> BAGS_ITEM_TAG = TAGS.registerItemTag("bags");
