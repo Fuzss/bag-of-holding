@@ -15,6 +15,6 @@ public class ItemStorageSlot extends Slot {
 
     @Override
     public boolean mayPlace(ItemStack itemStack) {
-        return this.holder.storage().isItemAllowedInContainer(itemStack);
+        return this.holder.storage().mayPlace(itemStack);
     }
 }
