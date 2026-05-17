@@ -1,8 +1,8 @@
 package fuzs.bagofholding.fabric.init;
 
-import fuzs.bagofholding.BagOfHolding;
+import fuzs.bagofholding.common.BagOfHolding;
 import fuzs.bagofholding.fabric.world.item.FabricBagOfHoldingItem;
-import fuzs.bagofholding.init.ModRegistry;
+import fuzs.bagofholding.common.init.ModRegistry;
 import fuzs.puzzleslib.common.api.init.v3.registry.RegistryManager;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;

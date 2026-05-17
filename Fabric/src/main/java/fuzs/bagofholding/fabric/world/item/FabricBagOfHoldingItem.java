@@ -1,14 +1,15 @@
 package fuzs.bagofholding.fabric.world.item;
 
-import fuzs.bagofholding.world.item.BagOfHoldingItem;
+import fuzs.bagofholding.common.world.item.BagOfHoldingItem;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class FabricBagOfHoldingItem extends BagOfHoldingItem implements FabricItem {
 
-    public FabricBagOfHoldingItem(Properties properties) {
+    public FabricBagOfHoldingItem(Item.Properties properties) {
         super(properties);
     }
 

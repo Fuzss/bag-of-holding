@@ -1,7 +1,7 @@
 package fuzs.bagofholding.neoforge.init;
 
-import fuzs.bagofholding.BagOfHolding;
-import fuzs.bagofholding.init.ModRegistry;
+import fuzs.bagofholding.common.BagOfHolding;
+import fuzs.bagofholding.common.init.ModRegistry;
 import fuzs.bagofholding.neoforge.world.item.NeoForgeBagOfHoldingItem;
 import fuzs.puzzleslib.common.api.init.v3.registry.RegistryManager;
 import net.minecraft.core.Holder;

@@ -1,9 +1,9 @@
 package fuzs.bagofholding.neoforge.client;
 
-import fuzs.bagofholding.BagOfHolding;
-import fuzs.bagofholding.client.BagOfHoldingClient;
-import fuzs.bagofholding.data.client.ModLanguageProvider;
-import fuzs.bagofholding.data.client.ModModelProvider;
+import fuzs.bagofholding.common.BagOfHolding;
+import fuzs.bagofholding.common.client.BagOfHoldingClient;
+import fuzs.bagofholding.common.data.client.ModLanguageProvider;
+import fuzs.bagofholding.common.data.client.ModModelProvider;
 import fuzs.puzzleslib.common.api.client.core.v1.ClientModConstructor;
 import fuzs.puzzleslib.neoforge.api.data.v2.core.DataProviderHelper;
 import net.neoforged.api.distmarker.Dist;

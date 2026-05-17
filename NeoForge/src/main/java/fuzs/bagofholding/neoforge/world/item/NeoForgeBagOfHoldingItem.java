@@ -1,6 +1,6 @@
 package fuzs.bagofholding.neoforge.world.item;
 
-import fuzs.bagofholding.world.item.BagOfHoldingItem;
+import fuzs.bagofholding.common.world.item.BagOfHoldingItem;
 import net.minecraft.world.item.ItemStack;
 
 public class NeoForgeBagOfHoldingItem extends BagOfHoldingItem {
