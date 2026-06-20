@@ -4,9 +4,5 @@
   "bag_type": "iron",
   "equipment_slots": "any",
   "interaction_permissions": "always",
-  "storage_options": {
-    "disallowed": true,
-    "filter_container_items": true
-  },
   "supported_items": "bagofholding:iron_bag_of_holding"
 }

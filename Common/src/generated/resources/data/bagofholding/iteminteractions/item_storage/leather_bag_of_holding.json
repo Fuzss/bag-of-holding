@@ -4,9 +4,5 @@
   "bag_type": "leather",
   "equipment_slots": "any",
   "interaction_permissions": "always",
-  "storage_options": {
-    "disallowed": true,
-    "filter_container_items": true
-  },
   "supported_items": "bagofholding:leather_bag_of_holding"
 }
