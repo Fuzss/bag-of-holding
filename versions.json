@@ -6,11 +6,17 @@
     "26.1.x": "maintained",
     "26.2.x": "primary"
   },
-  "properties": {
-    "distributions.curseforge.id": "593996",
-    "distributions.curseforge.slug": "bag-of-holding",
-    "distributions.github.slug": "bag-of-holding",
-    "distributions.modrinth.id": "qbqWvc0D",
-    "distributions.modrinth.slug": "bag-of-holding"
+  "distributions": {
+    "curseforge": {
+      "id": "593996",
+      "slug": "bag-of-holding"
+    },
+    "github": {
+      "slug": "bag-of-holding"
+    },
+    "modrinth": {
+      "id": "qbqWvc0D",
+      "slug": "bag-of-holding"
+    }
   }
 }
