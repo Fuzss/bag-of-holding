@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bagofholding:iron_bag_of_holding"
+        "recipes": "bagofholding:iron_bag_of_holding"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

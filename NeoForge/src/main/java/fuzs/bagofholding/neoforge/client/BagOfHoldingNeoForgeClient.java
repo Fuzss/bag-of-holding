@@ -5,7 +5,7 @@ import fuzs.bagofholding.common.client.BagOfHoldingClient;
 import fuzs.bagofholding.common.data.client.ModLanguageProvider;
 import fuzs.bagofholding.common.data.client.ModModelProvider;
 import fuzs.puzzleslib.common.api.client.core.v1.ClientModConstructor;
-import fuzs.puzzleslib.neoforge.api.data.v2.core.DataProviderHelper;
+import fuzs.puzzleslib.neoforge.api.data.v3.core.DataProviderBuilder;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.Mod;
 
@@ -14,6 +14,6 @@ public class BagOfHoldingNeoForgeClient {
 
     public BagOfHoldingNeoForgeClient() {
         ClientModConstructor.construct(BagOfHolding.MOD_ID, BagOfHoldingClient::new);
-        DataProviderHelper.registerDataProviders(BagOfHolding.MOD_ID, ModLanguageProvider::new, ModModelProvider::new);
+        DataProviderBuilder.of(BagOfHolding.MOD_ID).addProvider(ModLanguageProvider::new, ModModelProvider::new);
     }
 }

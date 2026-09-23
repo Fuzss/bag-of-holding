@@ -33,6 +33,10 @@ public class BagContainerStorage extends ContainerStorage {
 
     private final BagType bagType;
 
+    public BagContainerStorage(BagType bagType, @Nullable DyeBackedColor dyeColor) {
+        this(bagType, dyeColor, StorageOptions.DEFAULT);
+    }
+
     public BagContainerStorage(BagType bagType, @Nullable DyeBackedColor dyeColor, StorageOptions storageOptions) {
         super(dyeColor, storageOptions);
         this.bagType = bagType;

@@ -8,13 +8,11 @@ import fuzs.iteminteractions.common.api.v2.world.item.storage.ItemStorage;
 import fuzs.iteminteractions.common.api.v2.world.item.storage.ItemStorageType;
 import fuzs.puzzleslib.common.api.attachment.v4.DataAttachmentRegistry;
 import fuzs.puzzleslib.common.api.attachment.v4.DataAttachmentType;
-import fuzs.puzzleslib.common.api.data.v2.AbstractDatapackRegistriesProvider;
 import fuzs.puzzleslib.common.api.init.v3.registry.ContentRegistrationHelper;
 import fuzs.puzzleslib.common.api.init.v3.registry.RegistryManager;
 import fuzs.puzzleslib.common.api.init.v3.tags.TagFactory;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -30,9 +28,6 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 public class ModRegistry {
-    public static final RegistrySetBuilder REGISTRY_SET_BUILDER = new RegistrySetBuilder().add(Registries.ENCHANTMENT,
-            ModRegistry::bootstrapEnchantments);
-
     static final RegistryManager REGISTRIES = RegistryManager.from(BagOfHolding.MOD_ID);
     public static final Holder.Reference<Item> LEATHER_BAG_OF_HOLDING_ITEM = REGISTRIES.registerLazily(Registries.ITEM,
             "leather_bag_of_holding");
@@ -66,7 +61,7 @@ public class ModRegistry {
 
     public static void bootstrapEnchantments(BootstrapContext<Enchantment> context) {
         HolderGetter<Item> itemLookup = context.lookup(Registries.ITEM);
-        AbstractDatapackRegistriesProvider.registerEnchantment(context,
+        ContentRegistrationHelper.registerEnchantment(context,
                 PRESERVATION_ENCHANTMENT,
                 Enchantment.enchantment(Enchantment.definition(itemLookup.getOrThrow(BAGS_ITEM_TAG),
                         5,
