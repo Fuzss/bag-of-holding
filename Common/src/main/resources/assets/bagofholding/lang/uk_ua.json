@@ -1,0 +1,10 @@
+{
+  "enchantment.bagofholding.preservation": "Збереження",
+  "enchantment.bagofholding.preservation.desc": "Запобігає втраті сумки схову після смерті. Рівень чар знижується на один з кожним разом.",
+  "item.bagofholding.golden_bag_of_holding": "Золота сумка схову",
+  "item.bagofholding.iron_bag_of_holding": "Залізна сумка схову",
+  "item.bagofholding.leather_bag_of_holding": "Шкіряна сумка схову",
+  "itemGroup.bagofholding.main": "Сумка схову",
+  "tag.item.bagofholding.bags": "Сумки",
+  "tag.item.bagofholding.recipes_ignore_components": "Рецепти ігнорують компоненти"
+}
